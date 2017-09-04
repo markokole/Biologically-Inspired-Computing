@@ -1,0 +1,185 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import random\n",
+    "import numpy as np\n",
+    "import math"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Initial population: [13, 24, 8, 19]\n",
+      "Corresponding genotypes: ['01101', '11000', '01000', '10011']\n"
+     ]
+    }
+   ],
+   "source": [
+    "\n",
+    "\n",
+    "phenotypes = [13, 24, 8, 19]\n",
+    "#phenotypes = random.sample(range(0, 31), 4)\n",
+    "\n",
+    "print \"Initial population:\", phenotypes\n",
+    "\n",
+    "genotypes = []\n",
+    "\n",
+    "for ph in phenotypes:\n",
+    "  genotypes.append(bin(ph).format(1)[2:].zfill(5))\n",
+    "print \"Corresponding genotypes:\", genotypes\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<span style=\"color:green\">Fitness</span>\n",
+    "<br>\n",
+    "Calculate fitness values with fitness function <b>f(x) = x<sup>2</sup></b>"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Fitness: [169, 576, 64, 361]\n",
+      "Sum: 1170\n",
+      "Avg: 293\n",
+      "Max: 576\n"
+     ]
+    }
+   ],
+   "source": [
+    "def fitness_function(x):\n",
+    "    return x**2\n",
+    "\n",
+    "def sum_avg_max(lov):\n",
+    "    s = sum(lov)\n",
+    "    a = round(np.mean(lov), 2)\n",
+    "    m = max(lov)\n",
+    "    \n",
+    "    return s, a, m\n",
+    "\n",
+    "fitness_values = map(lambda x: fitness_function(x), phenotypes)\n",
+    "print \"Fitness:\", fitness_values\n",
+    "\n",
+    "fitness_sum, fitness_avg, fitness_max = sum_avg_max(fitness_values)\n",
+    "\n",
+    "print \"Sum:\", fitness_sum\n",
+    "print \"Avg:\", int(math.ceil(fitness_avg))\n",
+    "print \"Max:\", fitness_max\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<span style=\"color:green\">Probability</span>"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Probability: [0.14, 0.49, 0.05, 0.31]\n",
+      "Sum: 0.99\n",
+      "Avg: 0.25\n",
+      "Max: 0.49\n"
+     ]
+    }
+   ],
+   "source": [
+    "def probability(lov, sum_val):\n",
+    "    return map(lambda x: round(x/float(sum_val), 2), lov)\n",
+    "\n",
+    "probability_list = probability(fitness_values, fitness_sum)\n",
+    "print \"Probability:\", probability_list\n",
+    "\n",
+    "prob_sum, prob_avg, prob_max = sum_avg_max(probability_list)\n",
+    "\n",
+    "print \"Sum:\", prob_sum\n",
+    "print \"Avg:\", prob_avg\n",
+    "print \"Max:\", prob_max"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<span style=\"color:green\">Expected count</span>"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Probability: [0.58, 1.97, 0.22, 1.23]\n",
+      "Sum: 4.0\n",
+      "Avg: 1.0\n",
+      "Max: 1.97\n"
+     ]
+    }
+   ],
+   "source": [
+    "def expected_count(lov, fitness_avg):\n",
+    "    return map(lambda x: round(x/float(fitness_avg), 2), lov)\n",
+    "\n",
+    "expected_list = expected_count(fitness_values, fitness_avg)\n",
+    "print \"Probability:\", expected_list\n",
+    "\n",
+    "exp_sum, exp_avg, exp_max = sum_avg_max(expected_list)\n",
+    "\n",
+    "print \"Sum:\", exp_sum\n",
+    "print \"Avg:\", exp_avg\n",
+    "print \"Max:\", exp_max"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 2",
+   "language": "python",
+   "name": "python2"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 2
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython2",
+   "version": "2.7.6"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
