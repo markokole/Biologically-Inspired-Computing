@@ -6,5 +6,4 @@ Schedule for lectures: http://www.uio.no/studier/emner/matnat/ifi/INF3490/h17/ti
 
 Schedule for group sessions: http://www.uio.no/studier/emner/matnat/ifi/INF3490/h17/timeplan/index.html#2-1
 
-## Week 1 Exercises
-https://www.uio.no/studier/emner/matnat/ifi/INF3490/h17/exercises/inf3490-ex1.pdf
+This folder contains some code I put together for this course that I have been taking in autumn 2017.
