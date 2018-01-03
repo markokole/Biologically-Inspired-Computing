@@ -1,0 +1,8 @@
+Code is written in Python 3.6.
+
+File run.py is used for running the code.
+File movements_day1-3.dat holds input data
+File mlp.py is where the class neural_network is written.
+File output_example.out is an example file of the output written when the code is running.
+
+Link to the assignment: http://www.uio.no/studier/emner/matnat/ifi/INF3490/h17/assignment-2/inf3490-as2.pdf
